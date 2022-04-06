@@ -3,18 +3,24 @@ function draw(){
     if(canvas.getContext){
         const ctx = canvas.getContext('2d');
 
-        ctx.fillStyle = 'rgba(115, 216, 67, 0.6)';
-        ctx.beginPath();
-        ctx.moveTo(25, 25);
-        ctx.lineTo(105, 25);
-        ctx.lineTo(25, 105);
-        ctx.fill();
+        for(let i = 0; i < 4; i++){
+            for (let j = 0; j < 3; j++){
+                ctx.beginPath();
+                let x = 25 + j * 50;
+                let y = 25 + i * 50;
+                let radius = 20;
+                let startAngle =  0;
+                let endAngle = Math.PI + (Math.PI * j) / 2;
+                let anticlockwise = i % 2 == 0? false : true;
 
-        ctx.beginPath();
-        ctx.moveTo(40, 130);
-        ctx.lineTo(130, 50);
-        ctx.lineTo(130, 130);
-        ctx.closePath();
-        ctx.stroke();
+                ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise);
+
+                if(i > 1){
+                    ctx.fill();
+                } else{
+                    ctx.stroke();
+                }
+            }
+        }
     }
 }
